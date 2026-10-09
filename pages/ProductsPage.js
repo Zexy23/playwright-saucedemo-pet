@@ -4,6 +4,7 @@ class ProductsPage {
     this.backpackAddToCartButton = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
     this.cartBadge = page.locator('[data-test="shopping-cart-badge"]');
     this.backpackRemoveButton = page.locator('[data-test="remove-sauce-labs-backpack"]');
+    this.sortDropdown = page.locator('[data-test="product-sort-container"]');
   }
 
   async addBackpackToCart() {
@@ -25,6 +26,10 @@ class ProductsPage {
     } else {
       console.log('Shoping cart is empty');
     }
+  }
+
+  async sortByPriceLowToHigh() {
+    await this.sortDropdown.selectOption('lohi');
   }
 }
 
