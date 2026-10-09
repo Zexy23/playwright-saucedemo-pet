@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
 const { ProductsPage } = require('../pages/ProductsPage');
 
-test('Добавление рюкзака в корзину', async ({ page }) => {
+test('Successfully add a backpack to the shopping cart', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const productsPage = new ProductsPage(page);
   await loginPage.open();

@@ -1,17 +1,13 @@
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../pages/LoginPage'); // 1. Подключаем наш чертеж
+const { LoginPage } = require('../pages/LoginPage');
 
-test('Успешный логин в магазин', async ({ page }) => {
-  const loginPage = new LoginPage(page); // 2. Создаем страницу и передаем ей браузер
-
-  // 3. Вызываем метод открытия страницы
+test('Successfully log in with valid credentials', async ({ page }) => {
+  const loginPage = new LoginPage(page);
   await loginPage.open();
-
-  // 4. Вызываем метод логина и передаем реальные данные
   await loginPage.login('standard_user', 'secret_sauce');
 });
 
-test('Очистка формы логина', async ({ page }) => {
+test('Clear username and password fields successfully', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.open();
   await loginPage.usernameInput.fill('test-login');
@@ -22,7 +18,7 @@ test('Очистка формы логина', async ({ page }) => {
   await expect(loginPage.passwordInput).toBeEmpty();
 });
 
-test('Отображение ошибки при неверном пароле', async ({ page }) => {
+test('Display error message when logging in with invalid password', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.open();
   await loginPage.login('standard_user', 'wrong_password');
