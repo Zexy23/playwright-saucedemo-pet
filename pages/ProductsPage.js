@@ -23,7 +23,7 @@ class ProductsPage {
     if (isBadgeVisible === true) {
       await this.backpackRemoveButton.click();
     } else {
-      console.log('Корзина пустая');
+      console.log('Shoping cart is empty');
     }
   }
 }
