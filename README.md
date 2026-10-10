@@ -1,3 +1,5 @@
+[![Playwright Tests](https://github.com/Zexy23/playwright-saucedemo-pet/actions/workflows/playwright.yml/badge.svg)](https://github.com/Zexy23/playwright-saucedemo-pet/actions/workflows/playwright.yml)
+
 # Playwright UI Automation Framework
 
 A scalable E2E test automation framework built from scratch using **Playwright** and **JavaScript** for the SauceDemo e-commerce platform.
