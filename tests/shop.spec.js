@@ -4,11 +4,19 @@ const { ProductsPage } = require('../pages/ProductsPage');
 const { CartPage } = require('../pages/CartPage');
 const { credentials } = require('../pages/credentials');
 
-test('Successfully add a backpack to the shopping cart', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const productsPage = new ProductsPage(page);
+let loginPage;
+let productsPage;
+let cartPage;
+
+test.beforeEach(async ({ page }) => {
+  loginPage = new LoginPage(page);
+  productsPage = new ProductsPage(page);
+  cartPage = new CartPage(page);
   await loginPage.open();
   await loginPage.login(credentials.username, credentials.password);
+});
+
+test('Successfully add a backpack to the shopping cart', async ({ page }) => {
   await productsPage.clearCartIfNotEmpty();
   await productsPage.addBackpackToCart();
   const buttonText = await productsPage.getBackpackButtonText();
@@ -18,20 +26,11 @@ test('Successfully add a backpack to the shopping cart', async ({ page }) => {
 });
 
 test('Successfully sort products by price from low to high', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const productsPage = new ProductsPage(page);
-  await loginPage.open();
-  await loginPage.login(credentials.username, credentials.password);
   await productsPage.sortByPriceLowToHigh();
   await expect(productsPage.sortDropdown).toHaveValue('lohi');
 });
 
 test('Successfully navigate to checkout screen from cart', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const productsPage = new ProductsPage(page);
-  const cartPage = new CartPage(page);
-  await loginPage.open();
-  await loginPage.login(credentials.username, credentials.password);
   await productsPage.openCart();
   await cartPage.clickCheckout();
   await expect(page).toHaveURL(/.*checkout-step-one/);
